@@ -1,20 +1,21 @@
 import React from 'react';
 import { useState } from "react";
 import {
-    useHistory} from 'react-router-dom';
+    useHistory,Link
+} from 'react-router-dom';
 
 
 export const Login = () => {
 
-    
+
     let history = useHistory();
 
-     
-    
+
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    
+
 
     const formSubmit = (e) => {
         e.preventDefault();
@@ -22,26 +23,26 @@ export const Login = () => {
         if (!email || !password) {
             alert("Fields Can't be empty");
         }
-        else{
+        else {
             let initUser = JSON.parse(localStorage.getItem("user"));
             let newUser = []
-            if (initUser && Array.isArray(initUser)){
+            if (initUser && Array.isArray(initUser)) {
                 newUser = initUser.filter((user) => {
                     if (user.email === email && user.password === password) {
 
-                       localStorage.setItem("token","Nikhil");
+                        localStorage.setItem("token", "Nikhil");
                         history.push('/service');
                         return user;
-                    }   
+                    }
                     else {
                         console.log("Username or password invalid");
-                    }                 
+                    }
                 });
-               
+
             }
 
-             console.log(newUser);
-             console.log(initUser);
+            console.log(newUser);
+            console.log(initUser);
         }
 
     };
@@ -49,6 +50,7 @@ export const Login = () => {
     return (
         <div>
 
+            
             <div className="my-5">
                 <h1 className="text-center">Login</h1>
             </div>
@@ -65,7 +67,7 @@ export const Login = () => {
                             <div className="col-12 d-flex justify-content-center">
          
                                 <button type="submit" className="btn btn-primary w-100" onClick={formSubmit}>Login</button>
-                               
+                                <Link to="#" className="ml-3">Registeration</Link>
                             </div>
                         </form>
                     </div>
