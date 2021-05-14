@@ -1,0 +1,32 @@
+{
+    "vehicle": [
+      { 
+        "id": 1,
+        "title": "Empty Car coming from Bhopal to Indore",
+        "from": "Bhopal",
+        "to": "Indore",
+        "date": "25/05/2021"
+      },
+      { 
+        "id": 2,
+        "title": "Empty Truck coming from Gwalior to Indore",
+        "from": "Gwalior",
+        "to": "Indore",
+        "date": "27/05/2021"
+      },
+      { 
+        "id": 3,
+        "title": "Empty Jeep coming from Bhopal to Gwalior",
+        "from": "Bhopal",
+        "to": "Gwalior",
+        "date": "29/05/2021"
+      },
+      { 
+        "id": 4,
+        "title": "Empty Jeep coming from Indore to Gwalior",
+        "from": "Indore",
+        "to": "Gwalior",
+        "date": "23/05/2021"
+      }
+    ]
+}
