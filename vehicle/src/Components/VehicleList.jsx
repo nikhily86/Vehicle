@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import '../App.css';
+import { Link} from 'react-router-dom';
 
 export default class VehicleList extends Component {
     constructor()
     {
+     
         super();
         this.state={
             list:null,
+            
         }
     }
     componentDidMount(){
@@ -31,7 +34,7 @@ export default class VehicleList extends Component {
                                     <h4>To: <span>{item.to}</span></h4>
                                     <h4>Date: <span>{item.date}</span></h4>
                                    
-                                    <span className="ml-auto">{<button className="btn btn-primary">View More</button>}</span>
+                                    <span className="ml-auto">{<Link className="btn btn-primary" to="/Book">View More</Link>}</span>
                                 </div>
                             )
                         }

@@ -1,15 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 // import './App.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import VehicleList from "../Components/VehicleList";
 
+
+
+
+
 const Home = () => {
 
     const [selectedDate, setSelectedDate] = useState(null);
 
+    const [fcity, fdata] = useState([]);
+    const [tcity, tdata] = useState([]);
+    const [vtype, vdata] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/fromcity",
+            {
+                method: 'GET'
+            }).then(resp => resp.json()).then(resp => fdata(resp))
+    })
+
+    useEffect(() => {
+        fetch("http://localhost:3000/tocity",
+            {
+                method: 'GET'
+            }).then(resp => resp.json()).then(resp => tdata(resp))
+    })
+
+    useEffect(() => {
+        fetch("http://localhost:3000/type",
+            {
+                method: 'GET'
+            }).then(resp => resp.json()).then(resp => vdata(resp))
+    })
+
+
+
     const search = () => {
-        
+
     }
 
     return (
@@ -22,22 +53,30 @@ const Home = () => {
                         <div className="row">
                             <div className="col-3">
                                 <div className="input-group mb-3">
-                                    <select className="form-select" defaultValue={'DEFAULT'} id="inputGroupSelect01">
-                                        <option value="DEFAULT">From City</option>
-                                        <option value="1">Indore</option>
-                                        <option value="2">Bhopal</option>
-                                        <option value="3">Gwalior</option>
-                                    </select>
+                                    <input type="text" list="data1" placeholder="From City" />
+                                    <datalist id="data1">
+                                        {
+                                            fcity.map(result => {
+                                                return (
+                                                    <option>{result.from}</option>
+                                                )
+                                            })
+                                        }
+                                    </datalist>
                                 </div>
                             </div>
                             <div className="col-3">
                                 <div className="input-group mb-3">
-                                    <select className="form-select" defaultValue={'DEFAULT'} id="inputGroupSelect01">
-                                        <option value="DEFAULT">To City</option>
-                                        <option value="1">Indore</option>
-                                        <option value="2">Bhopal</option>
-                                        <option value="3">Gwalior</option>
-                                    </select>
+                                    <input type="text" list="data2" placeholder="To City" />
+                                    <datalist id="data2">
+                                        {
+                                            tcity.map(res => {
+                                                return (
+                                                    <option>{res.to}</option>
+                                                )
+                                            })
+                                        }
+                                    </datalist>
                                 </div>
                             </div>
                             <div className="col-3 ">
@@ -47,12 +86,16 @@ const Home = () => {
                             </div>
                             <div className="col-3">
                                 <div className="input-group mb-3">
-                                    <select className="form-select" defaultValue={'DEFAULT'} id="inputGroupSelect01">
-                                        <option value="DEFAULT">Select Type</option>
-                                        <option value="1">Car</option>
-                                        <option value="2">Jeep</option>
-                                        <option value="3">Truck</option>
-                                    </select>
+                                    <input type="text" list="data3" placeholder="Select Type" />
+                                    <datalist id="data3">
+                                        {
+                                            vtype.map(result=> {
+                                                return (
+                                                    <option>{result.type}</option>
+                                                )
+                                            })
+                                        }
+                                    </datalist>
                                 </div>
                             </div>
                         </div>
