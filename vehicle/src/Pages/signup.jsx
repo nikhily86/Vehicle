@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-// import { NavLink } from 'react-router-dom';
+ import { Link } from 'react-router-dom';
 
 export const Signup = ({ props }) => {
 
@@ -101,7 +101,7 @@ export const Signup = ({ props }) => {
                             </div>
                             <div className="col-12 d-flex justify-content-center">
                                 <button type="submit" className="btn btn-primary w-100">Register Me</button>
-                               
+                                <Link to="/login" className="ml-3">Login</Link>
                             </div>
                         </form>
                     </div>

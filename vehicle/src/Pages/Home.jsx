@@ -39,8 +39,8 @@ const Home = () => {
 
 
 
-    const search = () => {
-
+    const search = (e) => {
+        e.preventDefault();
     }
 
     return (
@@ -48,7 +48,7 @@ const Home = () => {
 
             <div className="Container">
                 <h1 className="text-center">Search The Vehicle</h1>
-                <form onSubmit={search()}>
+                <form>
                     <div className="container py-3">
                         <div className="row">
                             <div className="col-3">
@@ -100,7 +100,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="text-center mt-5">
-                            <button type="submit" className="btn btn-primary">Search</button>
+                            <button type="submit" onClick={search} className="btn btn-primary">Search</button>
                         </div>
                     </div>
                 </form>

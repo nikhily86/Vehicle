@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link} from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const Book = () => {
+
+    
 
     const [book, bdata] = useState([]);
 
@@ -12,11 +14,28 @@ const Book = () => {
             }).then(resp => resp.json()).then(resp => bdata(resp))
     })
 
+    const token = localStorage.getItem("token");
+
+    let loggedIn = true;
+    if (token == null) {
+        loggedIn = false;
+    }
+    else {
+        loggedIn = true;
+    }
+
+
+    if (loggedIn === false) {
+        return <Redirect to="/login" />
+    }
+
     return (
         <div>
 
 
             <div className="container">
+            <Link to="/logout" className="logout">Logout</Link>
+                <h1 className="text-center">Book Now</h1>
 
 
                 {
@@ -45,7 +64,7 @@ const Book = () => {
                                                 <h6>To City: <span>{result.to}</span></h6><hr />
                                             </div>
                                             <div className="d-flex justify-content-end">
-                                                  <Link className="btn btn-danger" id={result.id} to="/Agreement">Book</Link>
+                                                <Link className="btn btn-danger" id={result.id} to="/Agreement">Book</Link>
                                                 {/* <button className="btn btn-danger">Book</button> */}
                                             </div>
 

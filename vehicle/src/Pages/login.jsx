@@ -31,7 +31,7 @@ export const Login = () => {
                     if (user.email === email && user.password === password) {
 
                         localStorage.setItem("token", "Nikhil");
-                        history.push('/service');
+                        history.push('/Book');
                         return user;
                     }
                     else {
@@ -67,7 +67,7 @@ export const Login = () => {
                             <div className="col-12 d-flex justify-content-center">
          
                                 <button type="submit" className="btn btn-primary w-100" onClick={formSubmit}>Login</button>
-                                <Link to="#" className="ml-3">Registeration</Link>
+                                <Link to="/signup" className="ml-3">Registeration</Link>
                             </div>
                         </form>
                     </div>
