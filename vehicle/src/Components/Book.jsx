@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import Nav from "../Components/Nav";
 
 const Book = () => {
 
-    
+
 
     const [book, bdata] = useState([]);
 
@@ -32,9 +33,14 @@ const Book = () => {
     return (
         <div>
 
+            <Nav name={"Vehicle"} namelink={"logout"} link={'/logout'} pre={'/'} />
 
             <div className="container">
-            <Link to="/logout" className="logout">Logout</Link>
+
+                <div className="d-flex justify-content-end my-3">
+                    <Link to="/logout" className="logout btn btn-info ">Logout</Link>
+                </div>
+
                 <h1 className="text-center">Book Now</h1>
 
 

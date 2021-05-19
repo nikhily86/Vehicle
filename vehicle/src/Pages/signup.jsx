@@ -49,7 +49,7 @@ export const Signup = ({ props }) => {
             setPassword("");
             setAddress("");
             setPhone("");
-            setPassword1("");
+           
 
         }
 
@@ -75,29 +75,29 @@ export const Signup = ({ props }) => {
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Full Name</label>
                                 <input type="text" className="form-control" id="exampleFormControlInput1" name="fullname" value={fullname} onChange={(e) => { setFullname(e.target.value) }} placeholder="Name" />
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Address</label>
-                                <input type="text" className="form-control" id="exampleFormControlInput1" name="address" value={address} onChange={(e) => { setAddress(e.target.value) }} placeholder="Address" />
-                                <label for="ss" class="form-label">Select State</label>
-                                <select class="form-select" defaultValue={'DEFAULT'} id="ss">
+                                <input type="text" className="form-control" id="exampleFormControlInput11" name="address" value={address} onChange={(e) => { setAddress(e.target.value) }} placeholder="Address" />
+                                <label htmlFor="ss" className="form-label">Select State</label>
+                                <select className="form-select" defaultValue={'DEFAULT'} id="ss">
                                     <option value="DEFAULT">Select State</option>
                                     <option value="india">Rajasthan</option>
                                     <option value="usa">Madhya Pradesh</option>
                                     <option value="japan">Gujrat</option>
                                 </select>
-                                <label for="sc"  class="form-label">Select City</label>
-                                <select class="form-select" defaultValue={'DEFAULT'} id="sc">
+                                <label htmlFor="sc"  className="form-label">Select City</label>
+                                <select className="form-select" defaultValue={'DEFAULT'} id="sc">
                                     <option value="DEFAULT">Select City</option>
                                     <option value="india">Jaipur</option>
                                     <option value="usa">Indore</option>
                                     <option value="japan">Ahemdabad</option>
                                 </select>
-                                <label for="mobile" class="form-label">Contact No</label>
-                                <input type="number" class="form-control" id="mobile" name="phone" value={phone} onChange={(e) => { setPhone(e.target.value) }} placeholder="Contact No." />
+                                <label htmlFor="mobile" className="form-label">Contact No</label>
+                                <input type="number" className="form-control" id="phone" name="phone" value={phone} onChange={(e) => { setPhone(e.target.value) }} placeholder="Contact No." />
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
                                 <input type="email" className="form-control" id="exampleFormControlInput2" name="email" value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder="email@example.com" />
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Password</label>
                                 <input type="password" className="form-control" id="exampleFormControlInput3" name="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" />
                                 <label htmlFor="exampleFormControlInput1" className="form-label">Re-Enter Password</label>
-                                <input type="password" className="form-control" id="exampleFormControlInput3" name="password1" value={password1} onChange={(e) => { setPassword1(e.target.value) }} placeholder="ReEnter Password" />
+                                <input type="password" className="form-control" id="exampleFormControlInput33" name="password1" value={password1} onChange={(e) => { setPassword1(e.target.value) }} placeholder="ReEnter Password" />
                             </div>
                             <div className="col-12 d-flex justify-content-center">
                                 <button type="submit" className="btn btn-primary w-100">Register Me</button>

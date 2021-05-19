@@ -1,7 +1,7 @@
 import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
-import {Route, Switch, Redirect, BrowserRouter} from "react-router-dom";
+import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
 import Home from "./Pages/Home";
 import Navbar from "./Components/Navbar";
 import Signup from "./Pages/signup";
@@ -17,19 +17,19 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <Navbar />
-      <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/Signup" component={Signup} />
-      <Route exact path="/login" component={login} />
-      <Route exact path="/logout" component={Logout} />
-      <Route exact path="/vehicleList" component={VehicleList} />
-      <Route exact path="/Book" component={Book} />
-      <Route exact path="/Agreement" component={Agreement} />
-      <Route exact path="/Receipt" component={Receipt} />
-      <Redirect to="/" />
-    </Switch>
-    </BrowserRouter>
+        {/* <Navbar /> */}
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/Signup" component={Signup} />
+          <Route exact path="/login" component={login} />
+          <Route exact path="/logout" component={Logout} />
+          <Route exact path="/vehicleList" component={VehicleList} />
+          <Route exact path="/Book" component={Book} />
+          <Route exact path="/Agreement" component={Agreement} />
+          <Route exact path="/Receipt" component={Receipt} />
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
     </>
   );
 }

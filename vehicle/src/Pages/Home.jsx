@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 // import './App.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import VehicleList from "../Components/VehicleList";
+import Nav from "../Components/Nav";
 
 
 
@@ -44,9 +45,15 @@ const Home = () => {
     }
 
     return (
+        
         <div>
+           
+           
+           <Nav name={"Vehicle"}  namelink={"login"} link={'/Book'} pre={'/'}/>
+           
 
             <div className="Container">
+           
                 <h1 className="text-center">Search The Vehicle</h1>
                 <form>
                     <div className="container py-3">
