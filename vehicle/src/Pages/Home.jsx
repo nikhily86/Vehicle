@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import VehicleList from "../Components/VehicleList";
 import Nav from "../Components/Nav";
+import axios from "axios";
 
 
 
@@ -16,6 +17,15 @@ const Home = () => {
     const [fcity, fdata] = useState([]);
     const [tcity, tdata] = useState([]);
     const [vtype, vdata] = useState([]);
+    const [fval, setFval] = useState();
+
+    useEffect(() => {
+        async function getData(){
+            const res = await axios.get(`http://localhost:3000/vehicle/${fval}`)
+        }
+    })
+
+
 
     useEffect(() => {
         fetch("http://localhost:3000/fromcity",
@@ -54,14 +64,14 @@ const Home = () => {
 
             <div className="Container">
            
-                <h1 className="text-center">Search The Vehicle</h1>
+                <h1 className="text-center">Search The Vehicle {fval} </h1>
                 <form>
                     <div className="container py-3">
                         <div className="row">
                             <div className="col-3">
                                 <div className="input-group mb-3">
                                     <input type="text" list="data1" placeholder="From City" />
-                                    <datalist id="data1">
+                                    <select id="data1" value={fval} onChange={(event) => {setFval(event.target.value);}}>
                                         {
                                             fcity.map(result => {
                                                 return (
@@ -69,10 +79,10 @@ const Home = () => {
                                                 )
                                             })
                                         }
-                                    </datalist>
+                                    </select>
                                 </div>
                             </div>
-                            <div className="col-3">
+                            <div className="col-3"> 
                                 <div className="input-group mb-3">
                                     <input type="text" list="data2" placeholder="To City" />
                                     <datalist id="data2">
