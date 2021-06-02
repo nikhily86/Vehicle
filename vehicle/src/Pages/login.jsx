@@ -60,6 +60,7 @@ export const Login = () => {
             
             <div className="my-5">
                 <h1 className="text-center">Login</h1>
+                <Link className="btn btn-primary" to="/">Home</Link>
             </div>
             <div className="container contact_div">
                 <div className="row">

@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link} from 'react-router-dom';
 import Nav from "../Components/Nav";
+import store from "../store"
 
 
 const Agreement = () => {
 
     const [book, bdata] = useState([]);
+
+    
+    const state = store.getState();
+
+
+    let id1 = state.shareId.data;
+    var id;
+
+    for (var i = 0; i < id1.length; i++) {
+        // console.log(id1[i]);
+        id = id1[i].id;
+    }
+
 
     useEffect(() => {
         fetch("http://localhost:3000/vehicle",
@@ -27,7 +41,7 @@ const Agreement = () => {
 
                 {
                     book.map(result => {
-                        if(result.id===1){
+                        if(result.regno===id){
                         return (
                             <>
                                 <div>

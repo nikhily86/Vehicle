@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Book from "./Book"
+import {connect} from 'react-redux';
+import {share} from "../Actions"
 
-const VehicleList = () => {
+const VehicleList = (props) => {
 
     const [vehicle, vdata] = useState([]);
-    const [book, bdata] = useState([]);
+
 
     useEffect(() => {
         fetch("http://localhost:3000/vehicle",
@@ -14,12 +16,17 @@ const VehicleList = () => {
             }).then(resp => resp.json()).then(resp => vdata(resp))
     })
 
-    function shareId(id)
-    {
-        fetch("http://localhost:3000/vehicle/"+id,{
-            method:'GET'
-        }).then(resp => resp.json()).then(resp => bdata(resp))
-    }
+    // function shareId(id)
+    // {
+    //     // props.dispatch(share(id));
+    //    // console.log(id);
+    //     // let input = item.id;
+    //     // let input2 = item.title;
+    //     // props.dispatch(vehicle(input ,input2));
+    //     // console.log(input);
+    // }
+
+
 
 
     return (
@@ -32,7 +39,14 @@ const VehicleList = () => {
                             <h4>From: <span>{item.from}</span></h4>
                             <h4>To: <span>{item.to}</span></h4>
                             <h4>Date: <span>{item.date}</span></h4>
-                            <span className="ml-auto">{<Link className="btn btn-primary" onClick={()=>{shareId(item.id)}} to="/Book">View More</Link>}</span>
+                            <span className="ml-auto">{<Link className="btn btn-primary"  onClick={(e)=>{
+                                   
+                                    let id = item.regno;
+                                    let input2 = item.title;
+                                    props.dispatch(share(id ,input2));
+                                    alert(id)
+                               
+                                }} to="/Book">View More</Link>}</span>
                         </div>
                         
                     )
@@ -45,7 +59,14 @@ const VehicleList = () => {
     )
 }
 
-export default VehicleList
+
+const mapStateToProps = (state) => ({
+    id: state.shareId.data,
+})
+
+
+
+export default connect(mapStateToProps)(VehicleList);
 
 
 

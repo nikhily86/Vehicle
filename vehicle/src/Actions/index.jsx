@@ -1,7 +1,7 @@
-export const share = () => {
-    return {
-        type: "SHAREID"
-    }
-}
+const SHAREID = "SHAREID";
+export const share = (id) => ({
+    type: SHAREID,
+    id,
+});
 
  

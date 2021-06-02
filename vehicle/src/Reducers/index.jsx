@@ -3,7 +3,7 @@ import shareId from "./share";
 import {combineReducers} from "redux";
 
 const rootReducer = combineReducers({
-    shareId
+    shareId,
 });
 
 export default rootReducer;

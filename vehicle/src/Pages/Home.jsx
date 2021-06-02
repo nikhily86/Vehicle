@@ -71,7 +71,7 @@ const Home = () => {
                             <div className="col-3">
                                 <div className="input-group mb-3">
                                     <input type="text" list="data1" placeholder="From City" />
-                                    <select id="data1" value={fval} onChange={(event) => {setFval(event.target.value);}}>
+                                    <datalist id="data1">
                                         {
                                             fcity.map(result => {
                                                 return (
@@ -79,7 +79,7 @@ const Home = () => {
                                                 )
                                             })
                                         }
-                                    </select>
+                                    </datalist>
                                 </div>
                             </div>
                             <div className="col-3"> 
@@ -130,5 +130,9 @@ const Home = () => {
         </div>
     )
 }
+
+const mapStateToProps = (state) => ({
+    id: state.shareId.data,
+})
 
 export default Home;
