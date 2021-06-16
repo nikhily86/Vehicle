@@ -2,7 +2,7 @@ import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
-import Home from "./Pages/Home";
+import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import Signup from "./Pages/signup";
 import login from "./Pages/login";

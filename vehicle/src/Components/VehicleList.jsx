@@ -6,16 +6,6 @@ import {share} from "../Actions"
 
 const VehicleList = (props) => {
 
-    const [vehicle, vdata] = useState([]);
-
-
-    useEffect(() => {
-        fetch("http://localhost:3000/vehicle",
-            {
-                method: 'GET'
-            }).then(resp => resp.json()).then(resp => vdata(resp))
-    })
-
     // function shareId(id)
     // {
     //     // props.dispatch(share(id));
@@ -32,7 +22,7 @@ const VehicleList = (props) => {
     return (
         <>
             {
-                vehicle.map(item => {
+                props.vehicleData.map(item => {
                     return (
                         <div className="card bg-light my-2 p-3">
                             <h3>Title: <span>{item.title}</span></h3>
@@ -44,7 +34,7 @@ const VehicleList = (props) => {
                                     let id = item.regno;
                                     let input2 = item.title;
                                     props.dispatch(share(id ,input2));
-                                    alert(id)
+                                    // alert(id)
                                
                                 }} to="/Book">View More</Link>}</span>
                         </div>

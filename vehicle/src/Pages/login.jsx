@@ -1,5 +1,6 @@
 // import React from 'react';
 import React, { useState, useEffect } from 'react';
+import Nav from "../Components/Nav";
 import { Link, Redirect } from 'react-router-dom';
 import {
     useHistory
@@ -8,21 +9,10 @@ import {
 
 export const Login = () => {
 
-
-
-
     let history = useHistory();
-
-    
-
-
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    
-    
-
 
     const formSubmit = (e) => {
         e.preventDefault();
@@ -56,11 +46,12 @@ export const Login = () => {
 
     return (
         <div>
+           <Nav name={"Vehicle"} namelink={""} link={'/'} pre={'/'} />
 
             
             <div className="my-5">
                 <h1 className="text-center">Login</h1>
-                <Link className="btn btn-primary" to="/">Home</Link>
+                {/* <Link className="btn btn-primary" to="/">Home</Link> */}
             </div>
             <div className="container contact_div">
                 <div className="row">
