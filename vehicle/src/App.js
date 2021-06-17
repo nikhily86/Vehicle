@@ -8,9 +8,10 @@ import Signup from "./Pages/signup";
 import login from "./Pages/login";
 import VehicleList from "./Components/VehicleList";
 import Book from "./Components/Book";
-import Agreement from "./Components/Agreement";
+// import Agreement from "./Components/Agreement";
 import Receipt from "./Components/Receipt";
 import Logout from "./Pages/Logout";
+import Agreement from './Components/Home/agreement';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/Book" component={Book} />
           <Route exact path="/Agreement" component={Agreement} />
           <Route exact path="/Receipt" component={Receipt} />
+         
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>

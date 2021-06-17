@@ -5,6 +5,9 @@ import Nav from "../Nav";
 import axios from "axios";
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
+import VehicleDetail from './vehicleDetail'
+import Agreement from "./agreement";
+import Receipt from "./receipt";
 
 
 class Home extends React.Component {
@@ -16,41 +19,116 @@ constructor(props) {
 		vehicleData: [],
 		vehicleType: [],
 		selectedFromCity: {value: "Select City", label: "Select City"},
-		selectedToCity: null,
-		selectedVehicleType: null
+		selectedToCity: {value: "Select City", label: "Select City"},
+		selectedVehicleType: {value: "Select Vehicle", label: "Select Vehicle"},
+		vehicleDetail: null,
+		showLayout: null,
+		searchQuery: null
 	};
-
-	// this.setCitiesList = this.setCitiesList.bind(this);
-	// this.setVehicleList = this.setVehicleList.bind(this);
-	// this.setVehicleType = this.setVehicleType.bind(this);
+	
 	this.handleChange = this.handleChange.bind(this);
 	this.searchVehicle = this.searchVehicle.bind(this);
+	this.viewMoreHandle = this.viewMoreHandle.bind(this);
+	this.back = this.back.bind(this);
+	this.agreementView = this.agreementView.bind(this);
+	this.receiptView = this.receiptView.bind(this);
 }
 
+receiptView(vehicleDetail){
+
+	this.setState({
+		vehicleDetail,
+		showLayout: "Receipt"
+	})
+}
+
+agreementView(vehicleDetail){
+	this.setState({
+		vehicleDetail,
+		showLayout: "Agreement",
+	})
+}
+
+back(){
+	this.setState({
+		vehicleDetail: null,
+		showLayout: null
+	})
+}
+
+viewMoreHandle(vehicle){
+	this.setState({
+		vehicleDetail: vehicle,
+		showLayout: "Detail"
+	});
+}
 
 handleChange(e, name){
-	if(e.value == "Select City"){
-		this.setState({vehicleList: this.state.vehicleData});
+	let searchQuery =  {}
+	if(this.state.searchQuery){
+		searchQuery = this.state.searchQuery
+	}
+	debugger
+	if(e.value == "Select City" || e.value == "Select Vehicle"){
+		this.setState({
+			vehicleList: this.state.vehicleData,
+		});
 	}
 	if(name == "fromCity"){
+		if(e.value == "Select City"){
+			delete searchQuery.from
+		}else{
+			searchQuery["from"] = e.value
+		}
 		this.setState({selectedFromCity: e});
 	}
 	if(name == "toCity"){
-		this.setState({selectedToCity: e});
+		if(this.state.selectedFromCity && this.state.selectedFromCity.value){
+			if( this.state.selectedFromCity.value != e.value){
+				if(e.value == "Select City"){
+					delete searchQuery.to
+				}else{
+					searchQuery["to"] = e.value
+				}
+				this.setState({selectedToCity: e});
+			}
+		}else{
+			if(e.value == "Select City"){
+				delete searchQuery.to
+			}else{
+				searchQuery["to"] = e.value
+			}
+			this.setState({selectedToCity: e});
+		}
+
 	}
+	if(name == "type"){
+		if(e.value == "Select Vehicle"){
+			delete searchQuery.type
+		}else{
+			searchQuery["type"] = e.value
+		}
+		this.setState({selectedVehicleType: e});
+	}
+	this.setState({searchQuery});
 }
 
 searchVehicle(){
-	debugger
-	let selectedFromCity =  this.state.selectedFromCity && this.state.selectedFromCity.value
-	if(selectedFromCity && selectedFromCity != "Select City" ){
-		let vehicleList = this.state.vehicleData.filter((vehicle)=> {
-			if(vehicle.from == selectedFromCity){
-				return vehicle
-			}
+
+	let searchQuery = this.state.searchQuery
+	
+	let vehicleList = this.state.vehicleData.filter((vehicle)=> {
+		debugger
+		let find_results = Object.keys(searchQuery).map((key)=>{
+			debugger
+			return vehicle[key] == searchQuery[key]
 		})
-		this.setState({vehicleList});
-	}
+		debugger
+		if(!find_results.includes(false)){
+			return vehicle
+		}
+	})
+	this.setState({vehicleList});
 	
 }
 
@@ -75,7 +153,16 @@ componentDidMount(){
 
 	fetch("http://localhost:3000/type", {
 		method: 'GET'
-	}).then(resp => resp.json()).then(resp => this.setState({vehicleType: resp}))
+   }).then(resp => resp.json()).then((resp) =>{
+		 let vehicleType = resp.map((vtype)=>{
+			return { value: vtype.type, label: vtype.type } 
+		})
+
+		vehicleType.unshift({value: "Select Vehicle", label: "Select Vehicle"})
+		this.setState({
+			vehicleType: vehicleType
+		})
+	})
 
 }
 
@@ -83,17 +170,35 @@ render() {
 	return (
 		<>
 			<Nav name={"Vehicle"} namelink={"login"} link={'/Book'} pre={'/'} />
-			<Search
-				cities = {this.state.cities}
-				vehicleType={this.state.vehicleType}
-				selectedFromCity = {this.state.selectedFromCity}
-				selectedToCity = {this.state.selectedToCity}
-				selectedVehicleType = {this.state.selectedVehicleType}
-				handleChange = {this.handleChange}
-				searchVehicle = {this.searchVehicle}
-			/>
-			<VehicleList vehicleList={this.state.vehicleList}/>
-		
+			{
+				this.state.showLayout == null && 
+				<>
+					<Search
+						cities = {this.state.cities}
+						vehicleType={this.state.vehicleType}
+						selectedFromCity = {this.state.selectedFromCity}
+						selectedToCity = {this.state.selectedToCity}
+						selectedVehicleType = {this.state.selectedVehicleType}
+						handleChange = {this.handleChange}
+						searchVehicle = {this.searchVehicle}
+					/>
+					<VehicleList vehicleList={this.state.vehicleList} viewMoreHandle={this.viewMoreHandle} />
+				</>
+			}
+			{
+				this.state.showLayout == "Detail" && 
+				<VehicleDetail vehicleDetail={this.state.vehicleDetail} back={this.back} agreementView={this.agreementView} />
+			}
+			{
+				this.state.showLayout == "Agreement" &&
+				<Agreement vehicleDetail={this.state.vehicleDetail} back={this.back} receiptView={this.receiptView} />
+			}
+			{
+				this.state.showLayout == "Receipt" &&
+				<Receipt vehicleDetail={this.state.vehicleDetail} back={this.back}/>
+			}
+
+			
 		</>
 	);
 }

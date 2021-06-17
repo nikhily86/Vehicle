@@ -16,7 +16,7 @@ render() {
     return (
         <div className="Container">
             <h1 className="text-center">Search The Vehicle  </h1>
-            {/* <form> */}
+           
                 <div className="container py-3">
                     <div className="row">
                         <div className="col-3">
@@ -65,7 +65,7 @@ render() {
                             </div>
                         </div>
                         <div className="col-3">
-                            <div className="input-group mb-3">
+                            {/* <div className="input-group mb-3">
                                 <input type="text" list="data3" placeholder="Select Type" />
                                 <datalist id="data3">
                                     {
@@ -77,14 +77,22 @@ render() {
                                     }
                                 </datalist>
                             </div>
-                        </div>
+                        </div> */}
+                        <Select 
+                            value={this.props.selectedVehicleType}
+                            onChange={(e)=> this.props.handleChange(e, "type")}
+                            options={this.props.vehicleType}
+                            name="type"
+                            />
                     </div>
                     <div className="text-center mt-5">
-                        <button className="btn btn-primary" type="button" onClick={this.props.searchVehicle}>Search</button>
+                        <button className="btn btn-primary" type="button" onClick={(e) => this.props.searchVehicle(e)}>Search</button>
                     </div>
                 </div>
-            {/* </form> */}
-        </div>
+                </div>
+                </div>
+         
+        
     )
 }
 }

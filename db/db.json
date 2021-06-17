@@ -14,7 +14,8 @@
         "yoe": "2016-04-06",
         "oemail": "owner@gmail.com",
         "noa": "shree ran travels",
-        "owner": "Priyanshu Atal"
+        "owner": "Priyanshu Atal",
+        "type": "Car"
       },
       { 
         "id": 2,
@@ -30,7 +31,8 @@
         "yoe": "2016-04-06",
         "oemail": "owner@gmail.com",
         "noa": "shree ran travels",
-        "owner": "Priyanshu Atal"
+        "owner": "Priyanshu Atal",
+        "type": "Truck"
       },
       { 
         "id": 3,
@@ -46,7 +48,8 @@
         "yoe": "2016-04-06",
         "oemail": "owner@gmail.com",
         "noa": "shree ran travels",
-        "owner": "Priyanshu Atal"
+        "owner": "Priyanshu Atal",
+        "type": "Jeep"
       },
       { 
         "id": 4,
@@ -62,7 +65,8 @@
         "yoe": "2016-04-06",
         "oemail": "owner@gmail.com",
         "noa": "shree ran travels",
-        "owner": "Priyanshu Atal"
+        "owner": "Priyanshu Atal",
+        "type": "Jeep"
       }
     ],
 
