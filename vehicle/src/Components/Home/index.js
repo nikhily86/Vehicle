@@ -8,6 +8,8 @@ import DatePicker from 'react-datepicker';
 import VehicleDetail from './vehicleDetail'
 import Agreement from "./agreement";
 import Receipt from "./receipt";
+import history from "./history";
+
 
 
 class Home extends React.Component {
@@ -34,6 +36,7 @@ constructor(props) {
 	this.receiptView = this.receiptView.bind(this);
 }
 
+
 receiptView(vehicleDetail){
 
 	this.setState({
@@ -46,7 +49,11 @@ agreementView(vehicleDetail){
 	this.setState({
 		vehicleDetail,
 		showLayout: "Agreement",
-	})
+	});
+	this.props.history.push({
+		pathname: '/Agreement',
+		state: {agreementData: vehicleDetail}
+	});
 }
 
 back(){
@@ -60,6 +67,11 @@ viewMoreHandle(vehicle){
 	this.setState({
 		vehicleDetail: vehicle,
 		showLayout: "Detail"
+	});
+	// this.props.history.push('/vehicleDetail');
+	this.props.history.push({
+		pathname: '/vehicleDetail',
+		state: {vehicle: vehicle}
 	});
 }
 

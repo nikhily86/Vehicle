@@ -1,11 +1,14 @@
 import React from 'react'
+import history from "./history";
+
 
 const vehicleDetail = (props) => {
-    let vehicleDetail = props.vehicleDetail
+    debugger
+    let vehicleDetail = (props.location.state && props.location.state.vehicle) ? props.location.state.vehicle : {}
     return (
         <div className = "container" >
          <h1 className="text-center mt-5">Book Now</h1>
-         <button className="btn btn-danger" type="button"  onClick={(e)=> props.back(e)}>Go Back</button>
+         <button className="btn btn-danger" type="button"  onClick={(e)=> props.history.push('/') }>Go Back</button>
         <div className="card bg-light my-5 p-3 " >
             <div className="row">
                 <div className="col-6">
@@ -27,7 +30,12 @@ const vehicleDetail = (props) => {
                         <h6>To City: <span>{vehicleDetail.to}</span></h6><hr />
                     </div>
                     <div className="d-flex justify-content-end me-3">
-                    <button className="btn btn-info" type="button" onClick={(e) => props.agreementView(vehicleDetail, e)} >Book</button>
+                    <button className="btn btn-info" type="button" onClick={(e) =>{
+                        props.history.push({
+                            pathname: '/Agreement',
+                            state: {agreementData: vehicleDetail}
+                        });
+                    }} >Book</button>
                     </div>
 
                 </div>

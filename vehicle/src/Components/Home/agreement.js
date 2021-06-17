@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Agreement = (props) => {
-    let vehicleDetail = props.vehicleDetail
+    let vehicleDetail = (props.location.state && props.location.state.agreementData) ? props.location.state.agreementData : {}
     return (
         <div>
             <div className="container">
@@ -24,8 +24,13 @@ const Agreement = (props) => {
                 <h6>2.) Any Loss Happens is not our guarentee</h6>
                 <h6>3.) We're not responsible for your security</h6>
                 <div className="d-flex justify-content-start me-3">
-                    <button className="btn btn-warning mx-3 " type="button" onClick={(e) => props.receiptView(vehicleDetail, e)} >I Agree</button>
-                    <button className="btn btn-danger" type="button"  onClick={(e)=> props.back(e)}>Go Back</button>
+                    <button className="btn btn-warning" type="button" onClick={(e) =>{
+                        props.history.push({
+                            pathname: '/Receipt',
+                            state: {receiptData: vehicleDetail}
+                        });
+                    }} >I Agree</button>
+                    <button className="btn btn-danger" type="button"  onClick={(e)=> props.history.push('/')}>Go Back</button>
                 </div>
             </div>
         </div>
