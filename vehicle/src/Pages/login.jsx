@@ -1,7 +1,7 @@
 // import React from 'react';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Nav from "../Components/Nav";
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
     useHistory
 } from 'react-router-dom';
@@ -46,9 +46,9 @@ export const Login = () => {
 
     return (
         <div>
-           <Nav name={"Vehicle"} namelink={""} link={'/'} pre={'/'} />
+            <Nav name={"Vehicle"} namelink={""} link={'/'} pre={'/'} />
 
-            
+
             <div className="my-5">
                 <h1 className="text-center">Login</h1>
                 {/* <Link className="btn btn-primary" to="/">Home</Link> */}
@@ -64,7 +64,7 @@ export const Login = () => {
                                 <input type="password" className="form-control" id="exampleFormControlInput3" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter Password" />
                             </div>
                             <div className="col-12 d-flex justify-content-center">
-         
+
                                 <button type="submit" className="btn btn-primary w-100" onClick={formSubmit}>Login</button>
                                 <Link to="/signup" className="ml-3">Registeration</Link>
                             </div>

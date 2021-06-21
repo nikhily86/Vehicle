@@ -5,16 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./store";
 import { Provider } from "react-redux";
-import {Router, Route, Link } from "react-router-dom";
+import { Router } from "react-router-dom";
 import history from "./Components/Home/history";
 
- store.subscribe(() => console.log(store.getState()));
+store.subscribe(() => console.log(store.getState()));
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router history={history}>
-      <App />
+        <App />
       </Router>
     </Provider>
   </React.StrictMode>,
